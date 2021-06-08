@@ -1,0 +1,38 @@
+{{#if error}}   
+   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+     <strong>{{error}}</strong> 
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
+{{#if errors}}
+   {{#each errors}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{this.msg}}</strong> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+   {{/each}}
+  
+{{/if}}
+<form action="/auth/register" method="POST" enctype="multipart/form-data" class="p-3">
+  <h4 class="mb-4">Register</h4>
+
+  <div class="mb-4">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="name">
+  </div>
+
+  <div class="mb-4">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+ <div class="mb-3">
+    <label for="profile" class="form-label">Profile picture</label>
+    <input type="file" name="profile" class="form-control" id="profile">
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>

@@ -1,0 +1,41 @@
+
+ {{#if success_msg}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+     <strong>{{success_msg}}</strong> 
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {{/if}}
+
+{{#each posts }}
+<div class="card">
+    <div   class="header">
+        <div>
+            <h6 class="m-2"> <a href="posts/{{_id}}">{{this.title}}</a></h6>
+            <div  class="user-info">
+                <img class="user_profile m-2"  src="{{user.profile}}" alt="profile">
+                <div class="m-2">
+                     <span>Posted by: <b> {{user.name}} </b></span>
+                     <br>
+                     <span><i>on {{ formatDate createdAt 'dddd, MMMM Do YYYY, h:mm a'}}</i></span>
+                </div>
+            </div>
+        </div>
+        {{#ifCond this.user._id  @root.userId }}
+        <div  class="btnHolder" >
+            <form action="/posts/delete/{{_id}}" method="POST">
+                <input type="hidden" value="DELETE" name="_method" />
+                <button class="btn" type="submit"> <i class="far fa-trash-alt"></i></button>
+           </form>
+           <a class="btn" href="/posts/update/{{_id}}"><i class="fas fa-edit"></i></a>
+        </div>
+        {{/ifCond}}
+    </div>
+    <hr>
+    <div>
+        <img style="height:60px;" src="{{image}}" alt="image">
+        <P>{{ getShortPost body}}</P>
+    </div>
+</div>
+{{else}}
+<h4>Create new Post</h4>
+{{/each}}

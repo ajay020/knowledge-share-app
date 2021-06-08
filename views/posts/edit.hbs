@@ -1,0 +1,23 @@
+<h3>Edit Post</h3>
+
+<form action="/posts/{{post._id}}" method="POST" enctype="multipart/form-data" class="p-4"> 
+    <input type="hidden" name="_method" value="PUT">
+
+    <div class="form-group mt-3">
+        <label class="form-label" for="title">Title:</label>
+        <input class="form-control" type="text" name="title" id="Title..." value="{{post.title}}" />
+    </div>
+    
+    <div class="form-group mt-3">
+        <label class="form-label" for="image">Upload Image:</label>
+        <input class="form-control" type="file" name="image" id="image"/>
+    </div>
+    <div class="form-group mt-3" >
+        <label class="form-label" for="title">Create Your Post:</label>
+        <textarea class="form-control" name="body" id="body">{{post.body}}</textarea>
+    </div>
+    <div class="form-group mt-3">
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+
+</form>
