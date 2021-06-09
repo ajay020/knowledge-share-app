@@ -21,6 +21,23 @@ body {
   margin: 4px;
 }
 
+.body {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.body-img-sm {
+  width: 25%;
+  height: auto;
+  margin: auto;
+}
+.body-img-lg {
+  width: 60%;
+  /* height: 20%; */
+  margin: auto;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -48,4 +65,8 @@ body {
   background-position: center center;
   /* background-size: cover; */
   object-fit: cover;
+}
+
+#more {
+  display: none;
 }

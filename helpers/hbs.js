@@ -11,10 +11,10 @@ module.exports = {
     }
  },
  getShortPost(body){
-    if(body.length < 120){
+    if(body.length < 150){
         return body;
     }
-    return body.substring(0,117) + '...';
+    return body.substring(0,149)+ "..." + " <span id='myBtn'><b>Read more</b></span> ";
  },
  formatDate(date, format){
     return moment(date).format(format);
