@@ -1,27 +1,15 @@
 
-<div class="header">
-        <div>
-            <h6 class="m-2">{{this.title}}</h6>
-            <div  class="user-info">
-                <img class="user_profile m-2"  src="{{user.profile}}" alt="profile">
-                <div class="m-2">
-                     <span>Posted by: <b> <a href="user/details/{{user._id}}"> {{user.name}} </a></b></span>
-                     <br>
-                     <span><i>on {{ formatDate createdAt 'dddd, MMMM Do YYYY, h:mm a'}}</i></span>
-                </div>
-            </div>
+<div class="header ">
+    <div  class="user-info">
+        <img class="user_profile m-2"  src="{{user.profile}}" alt="profile">
+        <div class="m-2">
+            <span> {{user.name}} </span>
         </div>
-        {{!-- {{#ifCond this.user._id  @root.userId }}
-        <div  class="btnHolder" >
-            <form action="/posts/delete/{{_id}}" method="POST">
-                <input type="hidden" value="DELETE" name="_method" />
-                <button class="btn" type="submit"> <i class="far fa-trash-alt"></i></button>
-           </form>
-           <a class="btn" href="/posts/update/{{_id}}"><i class="fas fa-edit"></i></a>
-        </div>
-        {{/ifCond}} --}}
+    </div>
 </div>
 
+<hr>
+<h6> Posts by {{user.name}}</h6>
 {{#each posts }}
 <div class="card">
     <div   class="header">
@@ -30,7 +18,7 @@
             <div  class="user-info">
                 <img class="user_profile m-2"  src="{{user.profile}}" alt="profile">
                 <div class="m-2">
-                     <span>Posted by: <b> <a href="user/details/{{user._id}}"> {{user.name}} </a></b></span>
+                     <span>Posted by: <b> <a href="#"> {{user.name}} </a></b></span>
                      <br>
                      <span><i>on {{ formatDate createdAt 'dddd, MMMM Do YYYY, h:mm a'}}</i></span>
                 </div>
@@ -54,5 +42,5 @@
     </div>
 </div>
 {{else}}
-<h4>Create new Post</h4>
+<h4>{{user.name}} has not posted any post.</h4>
 {{/each}}

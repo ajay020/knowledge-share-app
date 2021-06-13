@@ -3,7 +3,6 @@ const path = require('path');
 const {v4: uuid} = require('uuid');
 const passport = require('passport');
 
-
 const { validationResult} = require('express-validator');
 const User = require('../models/User');
 const Post = require('../models/Post');
@@ -108,7 +107,6 @@ exports.login_user_post = function(req, res, next) {
     })(req, res, next);
   }
 
-
 exports.logout_user = (req, res) =>{
     req.logout();
     req.flash('success_msg', "Logout! You can login again.");
@@ -120,7 +118,7 @@ exports.edit_profile_get = async(req, res) =>{
     let user = await User.findById(userId).lean();
     // console.log(user);
 
-    res.render('edit_profile', {user, auth: req.isAuthenticated()});
+    res.render('user/edit_profile', {user, auth: req.isAuthenticated()});
 }
 exports.edit_profile_put = async(req, res) =>{
     try {
@@ -190,4 +188,20 @@ exports.delete_user = async(req, res) =>{
         // console.error(error);
         res.statusCode(500).json(error);
     } 
+}
+
+exports.details_user = async(req, res) =>{
+    try {
+        const userId = req.params.userId;
+        const posts = await Post.find({user: userId}).populate('user').lean();
+        if(!posts){
+            console.log("No post found");
+        }
+        const user = await User.findById(userId).lean();
+        // console.log(user);
+        res.render('user/user_details', {posts,user, auth:req.isAuthenticated()});
+    } catch (error) {
+        console.log(error);
+        res.render('error/500');
+    }
 }

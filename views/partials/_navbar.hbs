@@ -1,13 +1,4 @@
-{{!-- <div class="navbar">
-    <a href="/">Home</a>
-    {{#if auth }}
-    <a href="/auth/logout">Logout</a>
-    {{else}}
-    <a href="/auth/register">Register</a>
-    <a href="/auth/login">Login</a>
-    {{/if}}
-    
-</div> --}}
+
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -15,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="/">Share It</a>
+      <a class="navbar-brand" href="/"><b>Knowledge Share </b></a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -48,10 +39,12 @@
         {{/if}}
          
       </ul>
-      <div class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </div>
+        <form class="d-flex" action="posts/search" method="POST">
+            <div class="d-flex">
+                <input class="form-control me-2" name="username" type="search" placeholder="Search by Username" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </form>
     </div>
   </div>
 </nav>

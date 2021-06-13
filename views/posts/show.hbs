@@ -1,6 +1,28 @@
-<div>
-    <h3>{{post.title}}</h3>
-    <img src="{{post.image}}" alt="picture" style="height:300px; width:100%">
-    <h5> <a href="/posts/user/{{post.user._id}}"> More posts from {{post.user.username}}</a></h5>
-    <p>{{post.body}}</p>
+
+
+{{#each posts }}
+<div class="card">
+    <div   class="header">
+        <div>
+            <h6 class="m-2">{{this.title}}</h6>
+            <div  class="user-info">
+                <img class="user_profile m-2"  src="{{user.profile}}" alt="profile">
+                <div class="m-2">
+                     <span>Posted by: <b> <a href="/user/details/{{user._id}}"> {{user.name}} </a></b></span>
+                     <br>
+                     <span><i>on {{ formatDate createdAt 'dddd, MMMM Do YYYY, h:mm a'}}</i></span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <hr>
+    <div class="body">
+        <P id="dot">{{{ getShortPost body}}} </P>
+        <p id="more">{{body}}</p>
+        <img id="body-img" class="body-img-sm" src="{{image}}" alt="image">
+    </div>
 </div>
+{{else}}
+<h4>No Post found.</h4>
+{{/each}}

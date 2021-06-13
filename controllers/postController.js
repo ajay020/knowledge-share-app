@@ -5,7 +5,11 @@ const {v4: uuid} = require('uuid');
 
 // Display create post form on GET
 exports.add_post_get = (req, res) =>{
-    res.render('posts/add', {auth: req.isAuthenticated()});
+    let userId = null;
+    if(req.user){
+        userId = req.user._id;
+    }
+    res.render('posts/add', {userId,auth: req.isAuthenticated()});
 }
 
 // Handle create post form on POST
@@ -165,5 +169,24 @@ exports.delete_post = async(req, res)=>{
     } catch (error) {
         console.error(error);
         res.statusCode(500).json(error);
+    }
+}
+
+exports.search_posts = async(req, res) =>{
+    console.log(req.body.username);
+    try {
+        if(req.body.username !== ''){
+            let allPosts = await Post.find({}).populate('user').lean();
+            let posts =  allPosts.filter((post) => post.user.name.toLowerCase().includes( req.body.username.toLowerCase()));
+            console.log(posts);
+
+            res.render('posts/show', {posts, auth:req.isAuthenticated()});
+        }else{
+            res.redirect('/');
+        }
+        
+    } catch (error) {
+        console.log(error);
+        res.render('error/500');
     }
 }

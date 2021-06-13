@@ -31,4 +31,8 @@ router.delete('/delete/:postId',ensureAuth, post_controller.delete_post);
 // GET posts/user/:userId
 router.get("/user/:userId", ensureAuth, post_controller.post_list);
 
+//@ filter posts
+// GET posts/search
+router.post("/search", post_controller.search_posts);
+
 module.exports = router;
